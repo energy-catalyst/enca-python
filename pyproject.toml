@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "enca-python"
+version = "0.1.0"
+description = "Friendly Python access to your Energy Catalyst heat pump's cloud data"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+dependencies = ["httpx>=0.25"]
+
+[project.optional-dependencies]
+pandas = ["pandas>=1.5"]
+dev = ["pytest>=7", "respx>=0.21", "ruff>=0.5", "mypy>=1.8", "pandas>=1.5", "pandas-stubs"]
+
+[project.scripts]
+enca = "enca.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/enca"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]  # we print °F and similar on purpose
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+mypy_path = "src"
+packages = ["enca"]
