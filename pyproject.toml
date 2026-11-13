@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
@@ -8,8 +8,29 @@ version = "0.1.0"
 description = "Friendly Python access to your Energy Catalyst heat pump's cloud data"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "Proprietary" }
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Energy Catalyst LLC" }]
+keywords = ["heat pump", "geothermal", "energy", "energy catalyst", "api client"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Home Automation",
+  "Typing :: Typed",
+]
 dependencies = ["httpx>=0.25"]
+
+[project.urls]
+Homepage = "https://github.com/energy-catalyst/enca-python"
+Source = "https://github.com/energy-catalyst/enca-python"
+Issues = "https://github.com/energy-catalyst/enca-python/issues"
 
 [project.optional-dependencies]
 pandas = ["pandas>=1.5"]

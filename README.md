@@ -17,13 +17,14 @@ Read-only: the library reads your data and never changes a setting.
 
 ## Install
 
-From a checkout of this repository (Python 3.10 or newer):
+Python 3.10 or newer:
 
 ```bash
-python3 -m venv .venv && . .venv/bin/activate
-pip install -e .             # just the library (needs only httpx)
-pip install -e '.[pandas]'   # adds .to_dataframe()
+pip install enca-python              # just the library (needs only httpx)
+pip install 'enca-python[pandas]'    # adds .to_dataframe()
 ```
+
+The import name is `enca`; the command-line tool is `enca`.
 
 ## Sign in
 
@@ -264,8 +265,25 @@ Errors all derive from `enca.EncaError`: `AuthError`, `NotFound`,
 ## Development
 
 ```bash
+git clone https://github.com/energy-catalyst/enca-python && cd enca-python
+python3 -m venv .venv && . .venv/bin/activate
 pip install -e '.[dev]'
 pytest && ruff check . && ruff format --check . && mypy
 ```
 
 The tests use `httpx.MockTransport` and never contact a real service.
+
+## Releasing
+
+Bump `version` in `pyproject.toml`, commit, then tag and push:
+
+```bash
+git tag v0.1.1 && git push origin v0.1.1
+```
+
+The *Release* workflow tests, builds and publishes to PyPI with trusted
+publishing (no token stored anywhere).
+
+## License
+
+MIT © Energy Catalyst LLC. See [LICENSE](LICENSE).
